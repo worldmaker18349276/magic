@@ -3,7 +3,6 @@ let y = 100;
 let sticker = document.createElement("div");
 sticker.style = "position:fixed;z-index:1000;left:"+x+"px;top:"+y+"px;background:Cornsilk;padding:10px;";
 sticker.contentEditable = true;
-sticker.innerHTML = "type something...";
 document.body.appendChild(sticker);
 
 let isDragging = false;
@@ -30,3 +29,4 @@ window.addEventListener("mousemove", e => {
 document.execCommand('enableObjectResizing');
 document.execCommand('enableAbsolutePositionEditor');
 document.execCommand('enableInlineTableEditing');
+sticker.focus();
