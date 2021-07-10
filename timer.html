@@ -1,0 +1,47 @@
+<script>
+t = 0;
+pause = false;
+function update(t) {
+    let h = Math.floor(t/3600);
+    let m = Math.floor((t%3600)/60);
+    let s = Math.floor(t%60);
+    let d = h > 0 ? h + ":" : "";
+    d += (m < 10 ? "0" : "") + m + ":";
+    d += (s < 10 ? "0" : "") + s;
+    document.title = d;
+}
+update(t);
+
+setInterval(()=>{
+    if (!pause)
+        t = t <= 0 ? 0 : t - 1;
+    update(t);
+}, 1000);
+
+document.addEventListener("keydown", event=>{
+    switch (event.key) {
+        case " ":
+            pause = !pause;
+            break;
+        case "ArrowUp":
+            t += event.shiftKey ? 1800 : 60;
+            update(t);
+            break;
+        case "ArrowDown":
+            t -= event.shiftKey ? 1800 : 60;
+            t = t <= 0 ? 0 : t;
+            update(t);
+            break;
+    }
+})
+</script>
+<style>
+html {
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(210deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70%),
+        linear-gradient(120deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70%),
+        linear-gradient(330deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70%);
+}
+</style>
