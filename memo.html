@@ -1,1 +1,1 @@
-<body contenteditable onload="document.body.innerText=decodeURIComponent(location.hash.substr(1))" oninput="location.hash=encodeURIComponent(document.body.innerText)">
+<body contenteditable onload="document.body.innerText=decodeURIComponent(location.hash.substr(1))" oninput="location.hash=encodeURIComponent(document.body.innerText);document.title=document.body.innerText.split('\n')[0]">
