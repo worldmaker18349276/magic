@@ -13,10 +13,10 @@ back.addEventListener("mousedown", e => {
   if ( e.buttons == 1 ) {
     x = e.x;
     y = e.y;
-    focus.style.left = x + "px";
-    focus.style.top = y + "px";
-    focus.style.width = "0px";
-    focus.style.height = "0px";
+    focus.style.left = "0";
+    focus.style.top = "0";
+    focus.style.width = "100%";
+    focus.style.height = "100%";
   }
 });
 
