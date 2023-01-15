@@ -1,16 +1,18 @@
 let x = 0;
 let y = 0;
-let op = 0.5;
+const alpha = 0.5;
+const parent = document.body;
 
-let back = document.createElement("div");
-let focus = document.createElement("div");
-back.style = "position:fixed;z-index:1000;width:100%;height:100%;top:0;left:0;";
-focus.style = "position:relative;outline:rgba(0,0,0,"+op+") 10000px solid;top:0;left:0;width:10000px;height:10000px;";
-back.appendChild(focus);
-document.body.appendChild(back);
+const screen = document.createElement("div");
+const focus = document.createElement("div");
+screen.style = "position:fixed;z-index:2147483646;width:100%;height:100%;top:0;left:0;cursor:crosshair;";
+focus.style = `position:relative;outline:rgba(0,0,0,${alpha}) 10000px solid;top:0;left:0;width:10000px;height:10000px;`;
 
-back.addEventListener("mousedown", e => {
-  if ( e.buttons == 1 ) {
+screen.appendChild(focus);
+parent.appendChild(screen);
+
+screen.addEventListener("mousedown", e => {
+  if (e.buttons == 1) {
     x = e.x;
     y = e.y;
     focus.style.left = "0";
@@ -20,8 +22,8 @@ back.addEventListener("mousedown", e => {
   }
 });
 
-back.addEventListener("mousemove", e => {
-  if ( e.buttons == 1 ) {
+screen.addEventListener("mousemove", e => {
+  if (e.buttons == 1) {
     let [x1, x2] = [x, e.x].sort((a, b) => a - b);
     let [y1, y2] = [y, e.y].sort((a, b) => a - b);
     focus.style.left = x1 + "px";
@@ -31,8 +33,8 @@ back.addEventListener("mousemove", e => {
   }
 });
 
-window.addEventListener("keydown", e => {
-  if ( e.key == "Escape" ) {
-    document.body.removeChild(back);
-  }
-}, {once: true});
+screen.addEventListener("dblclick", e => {
+  parent.removeChild(screen);
+}, {
+  once: true
+});
