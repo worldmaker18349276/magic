@@ -8,7 +8,7 @@ sticker.contentEditable = true;
 parent.appendChild(sticker);
 
 sticker.addEventListener("blur", e => {
-  if (!sticker.innerText.replace(/\s*/, ""))
+  if (!sticker.textContent)
     parent.removeChild(sticker);
 });
 
