@@ -8,7 +8,7 @@ sticker.contentEditable = true;
 parent.appendChild(sticker);
 
 sticker.addEventListener("blur", e => {
-  if (!sticker.textContent)
+  if (!sticker.textContent && !sticker.querySelector(":not(div,span,br)"))
     parent.removeChild(sticker);
 });
 
